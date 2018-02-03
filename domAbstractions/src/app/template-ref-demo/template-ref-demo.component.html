@@ -1,0 +1,47 @@
+<p>
+  template-ref-demo works! {{isDisplayed}}
+</p>
+
+<div>
+
+
+
+
+  <div *ngIf="!displayLoadingTemplate else myTemplate">
+    It's all good, nothing is being loaded
+
+  </div>
+  <div>
+    <p>Control Center</p>
+    <button (click)="togleTemplate()">Togle Template</button>
+
+    <!-- <input type="radio" value="red" name="st"/>
+    <input type="radio" value="green" name="st" checked /> -->
+    <div>
+      <button (click)="setState('normal')">Set Normal State</button>
+      <button (click)="setState('green')">Set Green State</button>
+      <button (click)="setState('red')">Set Red State</button>
+
+    </div>
+  </div>
+  <p>I am somewhere before the template</p>
+  <ng-template #myTemplate>
+    <span>Loading ...</span>
+  </ng-template>
+  <p>I am somewhere after the template</p>
+
+  <div *ngIf="(state === 'normal') else abnormalState">
+    normal state
+  </div>
+
+  <ng-template #abnormalState>
+    <div *ngIf="state === 'green' then greenState else redState"></div>
+  </ng-template>
+  <ng-template #redState>
+    <span class="redState"> the state is red</span>
+  </ng-template>
+  <ng-template #greenState>
+    <span class="greenState"> the state is green</span>
+  </ng-template>
+
+</div>
