@@ -30,9 +30,16 @@
   </ng-template>
   <p>I am somewhere after the template</p>
 
-  <div *ngIf="(state === 'normal') else abnormalState">
+  <!-- <div *ngIf="(state === 'normal') else abnormalState">
     normal state
-  </div>
+  </div> -->
+
+<!-- the good thing with ng-container is that it does not require
+some html element in the DOM in order to be target to *ngIf like in the 
+previous case where div element is used and this will always stay in the DOM in ViewSource -->
+  <ng-container *ngIf="state === 'normal' else abnormalState">
+
+  </ng-container>
 
   <ng-template #abnormalState>
     <div *ngIf="state === 'green' then greenState else redState"></div>
